@@ -1,9 +1,11 @@
 const grid = document.querySelector('.grid')
+const scoreDisplay = document.querySelector('#score')
 const blockWidth = 100
 const blockHeight = 20
 const ballDiameter = 20
 const boardWidth = 560
 const boardHeight = 300
+let timerId
 let xDirection = 2
 let yDirection = 2
 
@@ -122,8 +124,14 @@ const changeDirection = () => {
 const checkForCollisions = () => {
     if (
         ballCurrentPosition[0] >= (boardWidth - ballDiameter) ||
-        ballCurrentPosition[1] >= (boardHeight - ballDiameter)
+        ballCurrentPosition[1] >= (boardHeight - ballDiameter) ||
+        ballCurrentPosition[0] <= 0
         ) {
         changeDirection()
+    }
+    if (ballCurrentPosition[1] <= 0) {
+        clearInterval(timerId)
+        scoreDisplay.innerHTML = 'You lose'
+        document.removeEventListener('keydown', moveUser)
     }
 }
