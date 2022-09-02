@@ -134,6 +134,12 @@ const checkForCollisions = () => {
         ) {
         changeDirection()
     }
+    if (
+        (ballCurrentPosition[0] > currentPosition[0] && ballCurrentPosition[0] < currentPosition[0] + blockWidth) &&
+        (ballCurrentPosition[1] > currentPosition[1] && ballCurrentPosition[1] < currentPosition[1] + blockHeight)
+    ) {
+        changeDirection()
+    }
     if (ballCurrentPosition[1] <= 0) {
         clearInterval(timerId)
         scoreDisplay.innerHTML = 'You lose'
