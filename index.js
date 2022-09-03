@@ -125,6 +125,12 @@ const checkForCollisions = () => {
             changeDirection()
             score++
             scoreDisplay.innerHTML = score
+
+            if (blocks.length === 0) {
+                scoreDisplay.innerHTML = 'YOU WIN'
+                clearInterval(timerId)
+                document.removeEventListener('keydown', moveUser)               
+            }
         }
     }
     if (
@@ -153,6 +159,8 @@ const moveBall = () => {
     drawBall()
     checkForCollisions()
 }
+
+timerId = setInterval(moveBall, 10)
 
 setInterval(moveBall, 30)
 
